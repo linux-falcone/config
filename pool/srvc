@@ -1,0 +1,45 @@
+#!/bin/env bash
+
+
+set -e
+
+
+function falcone_service_secured() {
+	systemctl enable --global gcr-ssh-agent.socket
+	systemctl enable firewalld
+}
+
+
+function falcone_service_desktop() {
+	systemctl enable --global hypridle
+	systemctl enable --global waybar
+	systemctl enable sddm
+}
+
+
+function falcone_service_sounder() {
+	systemctl enable --global pipewire-pulse
+}
+
+
+function falcone_service_utilize() {
+	systemctl enable tuned
+	systemctl enable nginx
+}
+
+
+function falcone_service_conecto() {
+	systemctl enable systemd-networkd.socket
+	systemctl enable bluetooth.service
+	systemctl enable systemd-resolved
+	systemctl enable iwd
+}
+
+
+function falcone_service() {
+	falcone_service_secured
+	falcone_service_desktop
+	falcone_service_sounder
+	falcone_service_utilize
+	falcone_service_conecto
+}
